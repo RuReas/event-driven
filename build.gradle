@@ -1,0 +1,43 @@
+group 'ru.esphere'
+version '0.0.1'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+/* Logging */
+def logbackVersion = '1.1.7'
+def slf4jVersion = '1.7.21'
+
+/* Tests */
+def junitVersion = '4.12'
+
+/* Libraries */
+def guavaVersion = '21.0'
+def javaslangVersion = '2.0.5'
+def jacksonVersion = '2.8.6'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    /* Logging with SLF4J & LogBack */
+    compile 'org.slf4j:slf4j-api:' + slf4jVersion
+    runtime 'org.slf4j:jcl-over-slf4j:' + slf4jVersion
+    runtime 'ch.qos.logback:logback-classic:' + logbackVersion
+
+    /* Libraries */
+    compile 'com.google.guava:guava:' + guavaVersion
+    compile 'io.javaslang:javaslang:' + javaslangVersion
+    compile 'com.fasterxml.jackson.core:jackson-core:' + jacksonVersion
+    compile 'com.fasterxml.jackson.core:jackson-databind:' + jacksonVersion
+
+    /* Tests */
+    testCompile 'junit:junit:' + junitVersion
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
+}
